@@ -26,8 +26,10 @@ class Core{
                 unset($url[1]);
             }
         }
+
         $this->param = array_values($url);
         call_user_func([$this->className,$this->methodName],$this->param);
+
     }
 
 }
