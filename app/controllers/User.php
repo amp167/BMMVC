@@ -5,13 +5,38 @@ class User extends Controller {
     }
     public function login(){
         if ($_SERVER['REQUEST_METHOD']=='POST'){
-//                    $data = [
-//            "email"=>'',
-//            "password"=>'',
-//            "email_err"=>'',
-//            "password_err"=>'',
-//        ];
-            echo "this is from POST";
+            $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+            $data = [
+            "email"=>$_POST['email'],
+            "password"=>$_POST['password'],
+            "email_err"=>'',
+            "password_err"=>'',
+        ];
+            if (empty($data['email'])){
+                $data['email_err'] = "Email Name must be supply!";
+            }
+            if (empty($data['password'])){
+                $data['password_err'] = "Password must be supply!";
+            }
+            if (empty($data['email_err']) && empty($data['password_err'])){
+                $rowUser = $this->usermodel->getUserByEmail($data['email']);
+                if ($rowUser){
+                    $hash_pass = $rowUser->password;
+                    if (password_verify($data['password'],$hash_pass)){
+                        flash("login_success","Welcome Back! Sir");
+                        setSessionUser($rowUser);
+                        redirect(URLROOT."admin/home");
+                    } 
+                    else{
+                        flash("login_error","User Credential Error");
+                        $this->view("user/login");
+                    }
+                }else{
+                    $data['email_err'] = "Email is not Registered";
+                }
+            }else{
+                $this->view('user/login',$data);
+            }
         }else{
             $this->view('user/login');
         }
@@ -64,4 +89,9 @@ class User extends Controller {
             $this->view('user/register');
         }
     }
+    public function logout(){
+        unsetSessionUser();
+        $this->view('home/index');
+    }
+
 }

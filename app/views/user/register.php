@@ -15,19 +15,16 @@
                         <label for="email" class="form-label ">Email address</label>
                         <input type="email" class="form-control <?= !empty($data['email_err']) ? 'is-invalid' :'' ?>" id="email" name="email">
                         <div class="text-danger"><?= !empty($data['email_err']) ? $data['email_err'] :'' ?></div>
-
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control <?= !empty($data['password_err']) ? 'is-invalid' :'' ?>" id="password" name="password">
                         <div class="text-danger"><?= !empty($data['password_err']) ? $data['password_err'] :'' ?></div>
-
                     </div>
                     <div class="mb-4">
                         <label for="confirm_password" class="form-label">Confirm Password</label>
                         <input type="password" class="form-control <?= !empty($data['confirm_password_err']) ? 'is-invalid' :'' ?>" id="confirm_password" name="confirm_password" >
                         <div class="text-danger"><?= !empty($data['confirm_password_err']) ? $data['confirm_password_err'] :'' ?></div>
-
                     </div>
                     <div class="d-flex justify-content-between">
                         <a href="<?= URLROOT."user/login"?>" class="text-decoration-none">Already Register? Please login!</a>

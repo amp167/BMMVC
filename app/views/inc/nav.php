@@ -16,12 +16,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Features</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?=URLROOT."user/login"?>">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?=URLROOT."user/Register"?>">Register</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Languages
@@ -29,6 +23,23 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">PHP</a></li>
                             <li><a class="dropdown-item" href="#">Python</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php if (getSessionUser()): ?>
+                                <?=getSessionUser()->name ?>
+                            <?php else : ?>
+                                <?="Member"?>
+                            <?php endif; ?>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <?php if (getSessionUser()) : ?>
+                                <li><a class="dropdown-item" href="<?=URLROOT."user/logout"?>">Logout</a></li>
+                            <?php else:?>
+                                <li><a class="dropdown-item" href="<?=URLROOT."user/login"?>">Login</a></li>
+                                <li><a class="dropdown-item" href="<?=URLROOT."user/register"?>">Register</a></li>
+                            <?php endif;?>
                         </ul>
                     </li>
                 </ul>

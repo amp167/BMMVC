@@ -19,17 +19,14 @@ class Core{
         }
         require_once "../app/controllers/".$this->className.".php";
         $this->className = new $this->className;
-
         if (!empty($url[1])){
             if (method_exists($this->className,$url[1])){
                 $this->methodName = $url[1];
                 unset($url[1]);
             }
         }
-
         $this->param = array_values($url);
         call_user_func([$this->className,$this->methodName],$this->param);
-
     }
 
 }

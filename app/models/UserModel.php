@@ -17,15 +17,16 @@ class UserModel
         $this->db->bind(":password",$password);
         return $this->db->execute();
     }
-    public function getuserByEmail($email){
+    public function getUserByEmail($email){
         $this->db->query("SELECT * FROM users WHERE email=:email");
         $this->db->bind(":email",$email);
         $row = $this->db->singleSet();
         if (empty($row)){
             return false;
         }else{
-            return true;
+            return $row;
         }
     }
+
 
 }
