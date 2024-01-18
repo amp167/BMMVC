@@ -1,7 +1,7 @@
 <div class="">
     <nav class=" container-fluid navbar navbar-expand-lg navbar-dark bg-black">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
+            <a class="navbar-brand fw-bold" href="<?=URLROOT?>">
                 <img src="<?=URLROOT."assets/img/favicon.png"?>" width="80px" alt="">
                 MBCCD
             </a>
@@ -10,9 +10,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <?php if (getSessionUser()) :?>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="<?=URLROOT."admin/home"?>">Admin Panel</a>
                     </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Features</a>
                     </li>
