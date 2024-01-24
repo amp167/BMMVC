@@ -4,6 +4,10 @@ class PostModel{
     public function __construct(){
         $this->db = new Database();
     }
+    public function getAllpost(){
+        $this->db->query("SELECT * FROM posts");
+        return $this->db->multipleSet();
+    }
     public function getPostById($id){
         $this->db->query("SELECT * FROM posts WHERE cat_id=:id");
         $this->db->bind(":id",$id);
@@ -16,6 +20,11 @@ class PostModel{
         $this->db->bind(':description',$description);
         $this->db->bind(':image',$image);
         $this->db->bind(':content',$content);
+        return $this->db->execute();
+    }
+    public function deletePost($id){
+        $this->db->query("DELETE from posts WHERE id=:id");
+        $this->db->bind(':id',$id);
         return $this->db->execute();
     }
 }

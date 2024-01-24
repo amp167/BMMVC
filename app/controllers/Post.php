@@ -5,11 +5,21 @@ class Post extends Controller
         $this->categortModel =$this->model('CategoryModel');
         $this->postModel = $this->model('PostModel');
     }
-    public function home($param=[]){
+    public function home(){
         $data = [
             'category' => '',
             'post'=>''
         ];
+        $data['category'] = $this->categortModel->getAllCategory();
+        $data['post'] = $this->postModel->getAllpost();
+        $this->view('admin/post/home',$data);
+    }
+    public function category($param=[]){
+        $data = [
+            'category' => '',
+            'post'=>''
+        ];
+        setCurrentCategory($param[0]);
         $data['category'] = $this->categortModel->getAllCategory();
         $data['post'] = $this->postModel->getPostById($param[0]);
         $this->view('admin/post/home',$data);
@@ -62,6 +72,14 @@ class Post extends Controller
             move_uploaded_file($file['tmp_name'],"assets/uploads/".$file['name']);
         }else{
             $this->view('admin/post/create',$data);
+        }
+    }
+    public function delete($param=[])
+    {
+
+        if ($this->postModel->deletePost($param[0])){
+            redirect(URLROOT."post/Category/".getCurrentCategory());
+            unsetCurrentCategory();
         }
     }
 }

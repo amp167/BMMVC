@@ -47,3 +47,21 @@ function unsetCurrentId(){
  function unsetSessionUser(){
     unset($_SESSION['currentUser']);
 }
+function setCurrentCategory($id){
+    if ($_SESSION['currentCategory']){
+        unset($_SESSION['currentCategory']);
+    }
+    $_SESSION['currentCategory'] = $id;
+}
+function getCurrentCategory()
+{
+    if ($_SESSION['currentCategory']){
+        return $_SESSION['currentCategory'];
+    }else{
+        return false;
+    }
+}
+function unsetCurrentCategory()
+{
+    unset($_SESSION['currentCategory']);
+}

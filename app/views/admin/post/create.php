@@ -29,12 +29,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label ">Description</label>
-                        <textarea id="description" class="p-3" name="description" cols="80" rows="3"></textarea>
+                        <textarea class="form-control" id="description" class="p-3" name="description"  rows="3"></textarea>
                         <div class="text-danger"><?= !empty($data['description_err']) ? $data['description_err'] :'' ?></div>
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label ">Content</label>
-                        <textarea id="content" class="p-3" name="content" cols="80" rows="6"></textarea>
+                        <textarea class="form-control" id="content" class="p-3" name="content" cols="80" rows="6"></textarea>
                         <div class="text-danger"><?= !empty($data['content_err']) ? $data['content_err'] :'' ?></div>
                     </div>
                     <div class="float-end mt-3">

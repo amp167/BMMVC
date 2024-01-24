@@ -33,7 +33,7 @@
                     </div>
                     <div class="">
                         <div class="float-end">
-                            <button type="submit" class="btn me-2 btn-outline-secondary">Cancel</button>
+                            <a class="btn me-2 btn-outline-secondary" href="<?=URLROOT."admin/home"?>">Cancel</a>
                             <button type="submit" class="btn btn-outline-info">Create</button>
                         </div>
                     </div>
